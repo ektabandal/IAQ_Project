@@ -1,0 +1,82 @@
+{
+  "model_name": "Logistic Regression",
+  "best_params": null,
+  "feature_kind": "raw_slope",
+  "feature_columns": [
+    "Temperature",
+    "Humidity",
+    "CO2",
+    "TVOC",
+    "PM25",
+    "PM10",
+    "Temperature_slope6",
+    "Humidity_slope6",
+    "CO2_slope6",
+    "TVOC_slope6",
+    "PM25_slope6",
+    "PM10_slope6"
+  ],
+  "classes": [
+    "GOOD",
+    "MODERATE",
+    "POOR"
+  ],
+  "horizon_minutes": 30,
+  "score_estimator_name": "Random Forest",
+  "score_estimator_test": {
+    "name": "Random Forest",
+    "test_R2": 0.8299042160694102,
+    "test_MAE": 1.4344773431136688,
+    "test_class_accuracy": 0.9628282828282828
+  },
+  "class_bands": {
+    "poor_below": 60.0,
+    "good_from": 80.0
+  },
+  "cv_pooled": {
+    "Accuracy": 0.8969783487984773,
+    "Balanced_Accuracy": 0.5535592474419628,
+    "Macro_F1": 0.538105799981481,
+    "Weighted_F1": 0.8984214697348724
+  },
+  "test": {
+    "Accuracy": 0.9563636363636364,
+    "Balanced_Accuracy": 0.7225713619040212,
+    "Macro_Precision": 0.616123178393117,
+    "Macro_Recall": 0.7225713619040212,
+    "Macro_F1": 0.654690230541585,
+    "Weighted_F1": 0.9604804679697843
+  },
+  "baselines_test": {
+    "Majority class": {
+      "Accuracy": 0.009292929292929294,
+      "Macro_F1": 0.006138243928476114
+    },
+    "No-change (observed device score)": {
+      "Accuracy": 0.9777777777777777,
+      "Macro_F1": 0.8311464091713502
+    },
+    "No-change (class estimated from sensors)": {
+      "Accuracy": 0.9535353535353536,
+      "Macro_F1": 0.6437655693492269
+    }
+  },
+  "data_range": [
+    "2024-10-14 13:55:00",
+    "2024-12-10 23:25:00"
+  ],
+  "rows": {
+    "train": 11541,
+    "validation": 2469,
+    "test": 2475,
+    "development": 14010
+  },
+  "trained_at": "2026-10-11T03:36:10",
+  "versions": {
+    "python": "3.13.5",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scikit-learn": "1.9.1",
+    "xgboost": "3.4.1"
+  }
+}
