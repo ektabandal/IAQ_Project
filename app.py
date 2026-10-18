@@ -51,7 +51,7 @@ from recommendations import (  # noqa: E402
 
 st.set_page_config(
     page_title="AI Indoor Air Quality Health Advisor",
-    page_icon="🌿",
+    page_icon="🪟",
     layout="wide",
 )
 
@@ -92,7 +92,7 @@ def show_class_box(label, cls):
 # Header and model check
 # ------------------------------------------------------------
 
-st.title("🌿 AI-Based Indoor Air Quality Health Advisor")
+st.title("AI-Based Indoor Air Quality Health Advisor")
 st.markdown(
     f"Predicts the indoor air quality class **{HORIZON_MINUTES} minutes ahead** "
     "(GOOD / MODERATE / POOR) from temperature, humidity, CO₂, TVOC, PM2.5 and "
@@ -292,7 +292,7 @@ else:
 # Dashboard
 # ------------------------------------------------------------
 
-st.subheader("📊 Current readings")
+st.subheader("Current readings")
 cols = st.columns(6)
 for col, s in zip(cols, SENSORS):
     delta = None
@@ -301,7 +301,7 @@ for col, s in zip(cols, SENSORS):
     col.metric(SENSOR_LABELS[s], f"{current[s]:.1f}", delta)
 st.caption(f"Latest reading time: {current['Timestamp']:%d %b %Y %H:%M}")
 
-st.subheader("🔮 Prediction")
+st.subheader("Prediction")
 left, right = st.columns(2)
 with left:
     show_class_box(current_label, current_class)
@@ -326,7 +326,7 @@ if actual_future is not None:
     ok = actual_future[1] == predicted
     msg = (f"Actual class: {CLASS_COLOR[actual_future[1]]} {actual_future[1]} "
            f"(score {actual_future[0]:.0f}). The prediction was "
-           f"{'correct ✅' if ok else 'incorrect ❌'}.")
+           f"{'correct ' if ok else 'incorrect '}.")
     (st.success if ok else st.error)(msg)
 
 st.subheader("⚠️ Early warning and health risk")
@@ -336,7 +336,7 @@ level, message = early_warning(current_class, predicted)
 risk_name, risk_text = HEALTH_RISK[predicted]
 st.markdown(f"**Predicted health-risk level: {risk_name}.** {risk_text}")
 
-st.subheader("🧠 Why did the model predict this?")
+st.subheader("Why did the model predict this?")
 explanation = explain_prediction(model, feat_all, feature_columns, pred_idx, top_k=5)
 if explanation is None:
     st.info("The selected model type does not provide per-prediction explanations.")
@@ -354,7 +354,7 @@ else:
     st.dataframe(show, hide_index=True)
     st.bar_chart(show.set_index("Feature")["Effect on prediction"])
 
-st.subheader("💡 Recommendations")
+st.subheader(" Recommendations")
 recs = get_recommendations(current_class, predicted, readings, trends)
 for r in recs:
     icon = {"urgent": "🚨", "action": "👉", "info": "ℹ️"}[r["level"]]
